@@ -93,7 +93,7 @@ export default defineConfig({
 	experimental: {
 		integrations: true,
 	},
-	site: "https://jovial-toffee-fdb787.netlify.app",
+	site: "https://cactus.paulapplegate.com",
 	integrations: [
 		tailwind({
 			config: { applyBaseStyles: false },
