@@ -12,10 +12,8 @@ const url = new URL(Astro.request.url);
 	siteId: '66a54a71-37db-417b-ada9-54dd3b971316',
 	branch: 'main',
 	selector: 'div#search',
-	{
-	  detached: { mediaQuery: '(max-width: 500px)' },
-	  detached: true,
-	}
+	detached: { mediaQuery: '(max-width: 500px)' },
+	detached: true,
   });
 </script>
 <div id="search"></div>
