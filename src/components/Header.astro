@@ -3,7 +3,18 @@ import ThemeToggle from "./ThemeToggle.astro";
 
 const url = new URL(Astro.request.url);
 ---
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
+<script type="text/javascript">
+  algoliasearchNetlify({
+	appId: 'QQV20793LV',
+	apiKey: 'bfd4d0c5560d6d6bc78e63e845ad2af5',
+	siteId: '66a54a71-37db-417b-ada9-54dd3b971316',
+	branch: 'main',
+	selector: 'div#search',
+  });
+</script>
+<div id="search"></div>
 <script>
 	import { toggleClass } from "@/util";
 
