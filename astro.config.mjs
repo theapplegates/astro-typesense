@@ -93,7 +93,7 @@ export default defineConfig({
 	experimental: {
 		integrations: true,
 	},
-	site: "https://www.astro-theme-cactus.netlify.app",
+	site: "https://jovial-toffee-fdb787.netlify.app",
 	integrations: [
 		tailwind({
 			config: { applyBaseStyles: false },
