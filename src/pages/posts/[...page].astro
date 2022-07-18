@@ -2,17 +2,24 @@
 import PageLayout from "@/layouts/Base";
 import BlogPostPreview from "@/components/BlogPostPreview";
 import Pagination from "@/components/Paginator";
-import { getAllTagsFromPosts, sortMDByDate } from "src/util";
+import { getAllTags, sortMDByDate } from "src/util";
+import type { Post, Page, MarkdownInstance } from "@/types";
 
 export async function getStaticPaths({ paginate }) {
-	const allPosts = await Astro.glob("./*.md");
+	const allPosts = await Astro.glob<Post>("./*.md");
 	const allPostsByDate = sortMDByDate(allPosts);
 	// Number of tags could be limited, 1.pass true as 2nd arg. 2.sort rtn object by values
-	const allTags = getAllTagsFromPosts(allPosts) || [];
+	const allTags = getAllTags(allPosts);
 	return paginate(allPostsByDate, { props: { allTags }, pageSize: 10 });
 }
 
-const { page, allTags } = Astro.props;
+export interface Props {
+	page: Page<MarkdownInstance<Post>>;
+	allTags: string[];
+}
+
+const { page, allTags } = Astro.props as Props;
+
 const meta = {
 	title: "Posts",
 	description: "A collection of posts by me for a starter Astro theme",
@@ -21,13 +28,13 @@ const meta = {
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			url: page.prev.url,
+			url: page.url.prev,
 			text: `← Previous Posts`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			url: page.url.next.url,
+			url: page.url.next,
 			text: `Next Posts →`,
 		},
 	}),
@@ -40,7 +47,7 @@ const paginationProps = {
 		<section aria-label="Blog post list">
 			<ul class="text-left space-y-8">
 				{page.data.map((p) => (
-					<li class="[&_q]:w-full flex flex-wrap items-center gap-x-2">
+					<li class="flex flex-wrap items-center gap-x-2 [&_q]:w-full">
 						<BlogPostPreview post={p} as="h2" withDesc />
 					</li>
 				))}
