@@ -12,6 +12,14 @@ const url = new URL(Astro.request.url);
 	siteId: '66a54a71-37db-417b-ada9-54dd3b971316',
 	branch: 'main',
 	selector: 'div#search',
+			  	theme: {
+	  mark: '#fff',                                 // Color of the matching content
+	  background: '#23263b',                        // Background Color of the input and the panel
+	  selected: '#111432',                          // Background Color of the selected item
+	  text: '#d6d6e7',                              // Color of the title of the items
+	  colorSourceIcon: '#d6d6e7'                    // Color of the icon on the left of results
+	}
+
 	  });
 </script>
 <div id="search"></div>
